@@ -1,0 +1,38 @@
+{
+ "name": "tiny-pixel/wordpress-mail",
+ "type": "package",
+ "license": "MIT",
+ "description": "WordPress Widgets configuration management for Acorn projects",
+ "authors": [
+  {
+   "name": "Kelly Mears",
+   "email": "kelly@tinypixel.dev"
+  }
+ ],
+ "keywords": [
+  "wordpress",
+  "acorn",
+  "sage",
+  "wordpress"
+ ],
+ "support": {
+  "issues": "https://github.com/pixelcollective/wordpress-mail/issues"
+ },
+ "autoload": {
+  "psr-4": {
+   "TinyPixel\\WordPress\\Mail\\": "src/"
+  }
+ },
+ "require": {
+  "php": ">=7.3",
+  "illuminate/mail": "^5.8",
+  "guzzlehttp/guzzle": "^6.3"
+ },
+ "extra": {
+  "acorn": {
+   "providers": [
+    "TinyPixel\\WordPress\\Mail\\Providers\\MailServiceProvider"
+   ]
+  }
+ }
+}
