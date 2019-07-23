@@ -2,38 +2,49 @@
 
 namespace App\Mail;
 
+// Illuminate framework
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * WordPress
+ *
+ * @author  Kelly Mears <kelly@tinypixel.dev>
+ * @license MIT
+ * @since   1.0.0
+ *
+ * @package    WordPress
+ * @subpackage Acorn Mail
+ */
 class WordPress extends Mailable
 {
     use Queueable, SerializesModels;
 
     /** @var string */
-    public $body;
-    public $siteName;
-    public $footer;
-    public $user;
+    public $notice;
 
     /**
      * Create a new message instance.
      *
+     * @param  array $wp_message
      * @return void
      */
     public function __construct(array $wp_message)
     {
-        $this->user = wp_get_current_user();
         $this->messageParts = $wp_message;
-        $this->siteName = get_bloginfo('site_name');
-        $this->body = $wp_message['body'];
-        $this->footer = "Powered by Tiny Pixel.";
+
+        $this->notice = (object) [
+            'user'     => $wp_message['user'],
+            'siteName' => $wp_message['siteName'],
+            'message'  => $wp_message['message'],
+        ];
     }
 
     /**
      * Build the message.
      *
-     * @return $this
+     * @return object $this
      */
     public function build()
     {

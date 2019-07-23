@@ -46,6 +46,9 @@ class WordPressMail
      */
     public function init()
     {
+        global $current_user;
+        $this->currentUser = $current_user;
+
         add_filter('wp_mail', [$this, 'mail']);
 
         return $this;
@@ -55,9 +58,11 @@ class WordPressMail
     {
         Mail::to($mail['to'])
             ->send(new WordPress([
-                'subject'     => $mail['subject'] !== '' ? $mail['subject'] : null,
-                'body'        => $mail['message'],
+                'subject'     => isset($mail['subject']) && $mail['subject'] !== '' ? $mail['subject'] : null,
+                'message'     => $mail['message'],
                 'attachments' => isset($mail['attachments']) ? $mail['attachments'] : [],
+                'user'        => wp_get_current_user($this->currentUser['ID']),
+                'siteName'    => get_bloginfo('site_name'),
             ]));
 
         return null;
