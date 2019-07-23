@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'postmaster@mx.siteurl.com'),
+        'name'    => env('MAIL_FROM_NAME', 'WordPress System'),
     ],
 
     /*
@@ -113,7 +114,7 @@ return [
     'markdown' => [
         'theme' => 'default',
         'paths' => [
-            resource_path('views/vendor/mail'),
+            get_theme_file_path('views/vendor/mail/markdown'),
         ],
     ],
 

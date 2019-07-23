@@ -8,6 +8,7 @@ use \Illuminate\Support\Collection;
 
 // Roots
 use \Roots\Acorn\ServiceProvider;
+use function \Roots\base_path;
 use function \Roots\config_path;
 
 // Internal
@@ -29,13 +30,11 @@ class MailServiceProvider extends ServiceProvider
       */
     public function register()
     {
-        $this->app->singleton('mail', function () {
-            new IlluminateMailServiceProvider($this->app);
+        $this->app->singleton('wordpress.mail', function () {
+            return new WordPressMail($this->app);
         });
 
-        $this->app->singleton('wordpress.mail', function () {
-            new WordPressMail($this->app);
-        });
+        $this->app->register(IlluminateMailServiceProvider::class);
     }
 
     /**
@@ -47,9 +46,12 @@ class MailServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/mail.php' => config_path('mail.php'),
+            __DIR__ . '/../Mail'            => base_path('app/Mail'),
+            __DIR__ . '/../Templates'       => base_path('resources/views/vendor/mail'),
         ]);
 
-        $this->app->make('mail');
+        $this->app['view']->addNamespace('Mail', base_path('resources/views/vendor/mail'));
+
         $this->app->make('wordpress.mail')->init();
     }
 }

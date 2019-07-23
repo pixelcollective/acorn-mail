@@ -3,21 +3,18 @@
 namespace TinyPixel\WordPress\Mail;
 
 // WordPress
-use \PHPMailer;
-use function \phpMailerException;
-use function \add_query_arg;
-use function \admin_url;
+use function \add_action;
 use function \get_bloginfo;
-use function \get_option;
-use function \update_option;
-use function \wp_nonce_url;
 
 // Illuminate framework
 use \Illuminate\Support\Collection;
-use \Illuminate\Support\Facades\Cache;
+use \Illuminate\Support\Facades\Mail;
 
 // Roots
 use \Roots\Acorn\Application;
+
+// Internal
+use \App\Mail\WordPress;
 
 /**
  * WordPress Mail
@@ -47,10 +44,22 @@ class WordPressMail
      * @param  \Illuminate\Support\Collection $config
      * @return object $this
      */
-    public function init(Collection $config)
+    public function init()
     {
-        $this->config = $config;
+        add_filter('wp_mail', [$this, 'mail']);
 
         return $this;
+    }
+
+    public function mail(array $mail)
+    {
+        Mail::to($mail['to'])
+            ->send(new WordPress([
+                'subject'     => $mail['subject'] !== '' ? $mail['subject'] : null,
+                'body'        => $mail['message'],
+                'attachments' => isset($mail['attachments']) ? $mail['attachments'] : [],
+            ]));
+
+        return null;
     }
 }
