@@ -4,7 +4,6 @@ namespace TinyPixel\WordPress\Mail;
 
 // WordPress
 use function \add_action;
-use function \get_bloginfo;
 
 // Illuminate framework
 use \Illuminate\Support\Collection;
@@ -14,7 +13,7 @@ use \Illuminate\Support\Facades\Mail;
 use \Roots\Acorn\Application;
 
 // Internal
-use \App\Mail\WordPress;
+use \App\Mail\WordPressMailable;
 
 /**
  * WordPress Mail
@@ -46,9 +45,6 @@ class WordPressMail
      */
     public function init()
     {
-        global $current_user;
-        $this->currentUser = $current_user;
-
         add_filter('wp_mail', [$this, 'mail']);
 
         return $this;
@@ -56,15 +52,39 @@ class WordPressMail
 
     public function mail(array $mail)
     {
-        Mail::to($mail['to'])
-            ->send(new WordPress([
-                'subject'     => isset($mail['subject']) && $mail['subject'] !== '' ? $mail['subject'] : null,
-                'message'     => $mail['message'],
-                'attachments' => isset($mail['attachments']) ? $mail['attachments'] : [],
-                'user'        => wp_get_current_user($this->currentUser['ID']),
-                'siteName'    => get_bloginfo('site_name'),
-            ]));
+        $mail['message'] = $this->replaceWordPressBreaks(
+            $this->replaceWordPressUrls($mail['message'])
+        );
+
+        Mail::to($mail['to'])->send(new WordPressMailable($mail));
 
         return null;
     }
+
+    /**
+     * Replaces WordPress email URL formatting
+     * with something that won't get stripped from html email
+     *
+     * @param  string $copy
+     * @return string
+     */
+    public function replaceWordPressUrls($copy)
+    {
+        preg_match('~<(.*?)>~', $copy, $output);
+
+        return str_replace($output[0], $output[1], $copy);
+    }
+
+    /**
+     * Replaces WordPress default linebreaks with HTML
+     * entities
+     *
+     * @param  string $copy
+     * @return string
+     */
+    public function replaceWordPressBreaks($copy)
+    {
+        return str_replace("\r\n", "<br />", $copy);
+    }
+
 }

@@ -45,9 +45,10 @@ class MailServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/mail.php' => config_path('mail.php'),
-            __DIR__ . '/../Mail'            => base_path('app/Mail'),
-            __DIR__ . '/../Templates'       => base_path('resources/views/mail'),
+            __DIR__ . '/../config/mail.php'     => config_path('mail.php'),
+            __DIR__ . '/../config/services.php' => config_path('services.php'),
+            __DIR__ . '/../Mail'                => base_path('app/Mail'),
+            __DIR__ . '/../Templates'           => base_path('resources/views/mail'),
         ]);
 
         $this->app['view']->addNamespace('Mail', base_path('resources/views/mail'));
