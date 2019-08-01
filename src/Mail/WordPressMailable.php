@@ -2,14 +2,12 @@
 
 namespace App\Mail;
 
-// WordPress
-use function \wp_load_alloptions;
-
-// Illuminate framework
 use Illuminate\Support\Collection;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+
+use function \wp_load_alloptions;
 
 /**
  * WordPress Mailable
@@ -20,7 +18,7 @@ use Illuminate\Queue\SerializesModels;
  * @author  Kelly Mears <kelly@tinypixel.dev>
  * @license MIT
  * @since   1.0.0
- * @see     \TinyPixel\WordPress\Mail\WordPressMail
+ * @see     TinyPixel\WordPress\Mail\WordPressMail
  * @link    https://laravel.com/docs/5.8/mail
  *
  * @package    WordPress

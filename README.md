@@ -12,7 +12,7 @@ Provides Acorn projects with email service
 
 ## Installation
 
-Install via composer:w
+Install via composer:
 
 ```bash
 composer require tiny-pixel/acorn-mail

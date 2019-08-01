@@ -1,19 +1,13 @@
 <?php
 
-namespace TinyPixel\WordPress\Mail;
+namespace TinyPixel\Acorn\Mail;
 
-// WordPress
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
+use Roots\Acorn\Application;
+use App\Mail\WordPressMailable;
+
 use function \add_action;
-
-// Illuminate framework
-use \Illuminate\Support\Collection;
-use \Illuminate\Support\Facades\Mail;
-
-// Roots
-use \Roots\Acorn\Application;
-
-// Internal
-use \App\Mail\WordPressMailable;
 
 /**
  * WordPress Mail
@@ -27,7 +21,7 @@ class WordPressMail
     /**
      * Constructor
      *
-     * @param  \Roots\Acorn\Application $app
+     * @param  Roots\Acorn\Application $app
      * @return object $this
      */
     public function __construct(Application $app)
@@ -40,7 +34,7 @@ class WordPressMail
     /**
      * Initializes class
      *
-     * @param  \Illuminate\Support\Collection $config
+     * @param  Illuminate\Support\Collection $config
      * @return object $this
      */
     public function init()
@@ -62,6 +56,18 @@ class WordPressMail
     }
 
     /**
+     * Replaces WordPress default linebreaks with HTML
+     * entities
+     *
+     * @param  string $copy
+     * @return string
+     */
+    public function replaceWordPressBreaks($copy)
+    {
+        return str_replace("\r\n", "<br />", $copy);
+    }
+
+    /**
      * Replaces WordPress email URL formatting
      * with something that won't get stripped from html email
      *
@@ -74,17 +80,4 @@ class WordPressMail
 
         return str_replace($output[0], $output[1], $copy);
     }
-
-    /**
-     * Replaces WordPress default linebreaks with HTML
-     * entities
-     *
-     * @param  string $copy
-     * @return string
-     */
-    public function replaceWordPressBreaks($copy)
-    {
-        return str_replace("\r\n", "<br />", $copy);
-    }
-
 }

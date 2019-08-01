@@ -1,21 +1,17 @@
 <?php
 
-namespace TinyPixel\WordPress\Mail\Providers;
+namespace TinyPixel\Acorn\Mail\Providers;
 
-// Illuminate framework
-use \Illuminate\Mail\MailServiceProvider as IlluminateMailServiceProvider;
-use \Illuminate\Support\Collection;
+use TinyPixel\Acorn\Mail\WordPressMail;
+use Illuminate\Mail\MailServiceProvider as IlluminateMailServiceProvider;
+use Illuminate\Support\Collection;
+use Roots\Acorn\ServiceProvider;
 
-// Roots
-use \Roots\Acorn\ServiceProvider;
-use function \Roots\base_path;
-use function \Roots\config_path;
-
-// Internal
-use \TinyPixel\WordPress\Mail\WordPressMail;
+use function Roots\base_path;
+use function Roots\config_path;
 
 /**
- * Mail Service Provider
+ * Mail service provider
  *
  * @author  Kelly Mears <kelly@tinypixel.dev>
  * @license MIT
@@ -30,7 +26,8 @@ class MailServiceProvider extends ServiceProvider
       */
     public function register()
     {
-        $this->app->singleton('wordpress.mail', function () {
+        dd($this->app);
+        $this->app->singleton('mail', function () {
             return new WordPressMail($this->app);
         });
 
@@ -53,6 +50,6 @@ class MailServiceProvider extends ServiceProvider
 
         $this->app['view']->addNamespace('Mail', base_path('resources/views/mail'));
 
-        $this->app->make('wordpress.mail')->init();
+        $this->app->make('mail')->init();
     }
 }
