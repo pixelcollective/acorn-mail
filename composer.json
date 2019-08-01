@@ -30,12 +30,14 @@
   },
   "extra": {
     "acorn": {
-    "providers": [
-      "TinyPixel\\Acorn\\Mail\\Providers\\MailServiceProvider"
-    ],
-    "dont-discover": [
-      "*"
-    ]
+      "providers": [
+        "TinyPixel\\Acorn\\Mail\\Providers\\MailServiceProvider"
+      ]
+    },
+    "laravel": {
+      "dont-discover": [
+        "Illuminate\\Mail\\MailServiceProvider"
+      ]
     }
   }
 }
