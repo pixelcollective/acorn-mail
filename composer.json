@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-    "TinyPixel\\Acorn\\Mail\\": "src/"
+      "TinyPixel\\Acorn\\Mail\\": "src/"
     }
   },
   "require": {
@@ -32,11 +32,6 @@
     "acorn": {
       "providers": [
         "TinyPixel\\Acorn\\Mail\\Providers\\MailServiceProvider"
-      ]
-    },
-    "laravel": {
-      "dont-discover": [
-        "Illuminate\\Mail\\MailServiceProvider"
       ]
     }
   }
