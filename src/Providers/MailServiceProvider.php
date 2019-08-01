@@ -26,12 +26,11 @@ class MailServiceProvider extends ServiceProvider
       */
     public function register()
     {
-        dd($this->app);
-        $this->app->singleton('mail', function () {
+        $this->app->register(IlluminateMailServiceProvider::class);
+
+        $this->app->singleton('mailer.wordpress', function () {
             return new WordPressMail($this->app);
         });
-
-        $this->app->register(IlluminateMailServiceProvider::class);
     }
 
     /**
@@ -50,6 +49,6 @@ class MailServiceProvider extends ServiceProvider
 
         $this->app['view']->addNamespace('Mail', base_path('resources/views/mail'));
 
-        $this->app->make('mail')->init();
+        $this->app->make('mailer.wordpress')->init();
     }
 }
