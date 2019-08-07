@@ -28,26 +28,50 @@ class WordPressMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var string */
+    /**
+     * Subject
+     *
+     * @var string
+     */
     public $subject;
 
-    /** @var string */
+    /**
+     * Body
+     *
+     * @var string
+     */
     public $body;
 
-    /** @var array */
+    /**
+     * Attachment
+     *
+     * @var array
+     */
     public $attach;
 
-    /** @var object */
+    /**
+     * Site
+     *
+     * @var object
+     */
     public $site;
 
-    /** @var string */
+    /**
+     * Disclaimer
+     *
+     * @var string
+     */
     public $disclaimer;
 
-    /** @var string */
+    /**
+     * Logo
+     *
+     * @var string
+     */
     public $logo;
 
     /**
-     * Creates a new message instance.
+     * Creates a new WordPress Mailable instance.
      *
      * @param  array $mail
      * @return void
@@ -57,6 +81,11 @@ class WordPressMailable extends Mailable
         $this->mail = $mail;
     }
 
+    /**
+     * Sets the email content.
+     *
+     * @return void
+     */
     public function setContents()
     {
         $this->subject    = $this->emailComponent('subject');
@@ -70,17 +99,17 @@ class WordPressMailable extends Mailable
     /**
      * Build the message
      *
-     * @return object $this
+     * @return \Illuminate\View\View
      */
     public function build()
     {
         $this->setContents();
 
-        if (!is_null($this->subject)) {
+        if (! is_null($this->subject)) {
             $this->subject($this->subject);
         }
 
-        if (!empty($this->attach)) {
+        if (! empty($this->attach)) {
             $this->attach($this->attach);
         }
 
@@ -88,9 +117,9 @@ class WordPressMailable extends Mailable
     }
 
     /**
-     * Returns email component, if set
+     * Returns the email component if set.
      *
-     * @param string $component
+     * @param  string $component
      * @return mixed
      */
     protected function emailComponent($component)

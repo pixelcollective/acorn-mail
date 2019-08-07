@@ -1,5 +1,8 @@
 <?php
 
+use function Roots\env;
+use function Roots\resource_path;
+
 return [
 
     /*
@@ -114,7 +117,7 @@ return [
     'markdown' => [
         'theme' => 'default',
         'paths' => [
-            get_theme_file_path('views/vendor/mail/markdown'),
+            resource_path('views/vendor/mail/markdown'),
         ],
     ],
 

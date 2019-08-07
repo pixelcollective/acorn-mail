@@ -9,6 +9,7 @@ use Roots\Acorn\ServiceProvider;
 
 use function Roots\base_path;
 use function Roots\config_path;
+use function Roots\resource_path;
 
 /**
  * Mail service provider
@@ -44,10 +45,10 @@ class MailServiceProvider extends ServiceProvider
             __DIR__ . '/../config/mail.php'     => config_path('mail.php'),
             __DIR__ . '/../config/services.php' => config_path('services.php'),
             __DIR__ . '/../Mail'                => base_path('app/Mail'),
-            __DIR__ . '/../Templates'           => base_path('resources/views/mail'),
+            __DIR__ . '/../Templates'           => resource_path('views/mail'),
         ]);
 
-        $this->app['view']->addNamespace('Mail', base_path('resources/views/mail'));
+        $this->app['view']->addNamespace('Mail', resource_path('views/mail'));
 
         $this->app->make('mailer.wordpress')->init();
     }

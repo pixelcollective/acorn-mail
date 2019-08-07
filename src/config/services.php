@@ -1,5 +1,7 @@
 <?php
 
+use function Roots\env;
+
 return [
 
     /*
