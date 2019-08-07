@@ -7,9 +7,6 @@ use Illuminate\Mail\MailServiceProvider as IlluminateMailServiceProvider;
 use Illuminate\Support\Collection;
 use Roots\Acorn\ServiceProvider;
 
-use function Roots\base_path;
-use function Roots\config_path;
-
 /**
  * Mail service provider
  *
@@ -41,13 +38,13 @@ class MailServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/mail.php'     => config_path('mail.php'),
-            __DIR__ . '/../config/services.php' => config_path('services.php'),
-            __DIR__ . '/../Mail'                => base_path('app/Mail'),
-            __DIR__ . '/../Templates'           => base_path('resources/views/mail'),
+            __DIR__ . '/../config/mail.php'     => $this->app->configPath('mail.php'),
+            __DIR__ . '/../config/services.php' => $this->app->configPath('services.php'),
+            __DIR__ . '/../views'               => $this->app->resourcePath('views/mail'),
+            __DIR__ . '/../Mail'                => $this->app->path('Mail'),
         ]);
 
-        $this->app['view']->addNamespace('Mail', base_path('resources/views/mail'));
+        $this->app['view']->addNamespace('Mail', $this->app->resourcePath('views/mail'));
 
         $this->app->make('mailer.wordpress')->init();
     }

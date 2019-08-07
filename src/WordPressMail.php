@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Mail;
 use Roots\Acorn\Application;
 use App\Mail\WordPressMailable;
 
-use function \add_action;
-
 /**
  * WordPress Mail
  *
@@ -19,7 +17,7 @@ use function \add_action;
 class WordPressMail
 {
     /**
-     * Constructor
+     *  Creates a new WordPressMail instance.
      *
      * @param  Roots\Acorn\Application $app
      * @return object $this
@@ -32,7 +30,7 @@ class WordPressMail
     }
 
     /**
-     * Initializes class
+     * Intitializes and registers the class with `wp_mail`.
      *
      * @param  Illuminate\Support\Collection $config
      * @return object $this
@@ -44,20 +42,25 @@ class WordPressMail
         return $this;
     }
 
+    /**
+     * Initializes an instance of WordPressMailable and sends the passed mail.
+     *
+     * @param  array $mail
+     * @return void
+     */
     public function mail(array $mail)
     {
         $mail['message'] = $this->replaceWordPressBreaks(
             $this->replaceWordPressUrls($mail['message'])
         );
 
-        Mail::to($mail['to'])->send(new WordPressMailable($mail));
+        return Mail::to($mail['to'])->send(new WordPressMailable($mail));
 
         return null;
     }
 
     /**
-     * Replaces WordPress default linebreaks with HTML
-     * entities
+     * Replaces WordPress default linebreaks with HTML entities
      *
      * @param  string $copy
      * @return string
@@ -68,8 +71,8 @@ class WordPressMail
     }
 
     /**
-     * Replaces WordPress email URL formatting
-     * with something that won't get stripped from html email
+     * Replaces WordPress email URL formatting with something that won't
+     * get stripped from html email
      *
      * @param  string $copy
      * @return string
