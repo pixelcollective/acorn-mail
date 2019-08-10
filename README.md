@@ -1,7 +1,7 @@
 # Acorn Mail
 
-![Package Version](https://img.shields.io/packagist/v/tiny-pixel/acorn-mail?style=flat-square)
-![Total Downloads](https://img.shields.io/packagist/dt/tiny-pixel/acorn-mail?style=flat-square)
+[![Package Version](https://img.shields.io/packagist/v/tiny-pixel/acorn-mail?style=flat-square)](https://packagist.org/packages/tiny-pixel/acorn-mail)
+[![Total Downloads](https://img.shields.io/packagist/dt/tiny-pixel/acorn-mail?style=flat-square)](https://packagist.org/packages/tiny-pixel/acorn-mail/stats)
 
 Provides Acorn projects (e.g. Sage 10) with a Mail service that replaces the default WordPress PHPMailer behavior with that of [SwiftMailer](https://swiftmailer.symfony.com/) and [Laravel Mail](https://laravel.com/docs/5.8/mail).
 
@@ -35,7 +35,7 @@ If you discover a bug in Acorn Mail, please [open an issue](https://github.com/p
 
 Contributing, whether it be through PRs, reporting an issue, or suggesting an idea is encouraged and appreciated.
 
-All contributors absolutely must strictly adhere to our [Code of Conduct](https://github.com/pixelcollective/acorn-mail/blob/master/CODE_OF_CONDUCT.md).
+All contributors absolutely must strictly adhere to our [Code of Conduct](https://github.com/pixelcollective/acorn-mail/blob/master/CODE-OF-CONDUCT.md).
 
 ## License
 

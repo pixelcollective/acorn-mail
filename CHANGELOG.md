@@ -5,9 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+### Improved
+
+- Packagist widgets in the README now link to their corresponding pages.
+
 ### Fixed
 
 - Boilerplate Code of Conduct removed in favor of the actual Code of Conduct.
+- Code of Conduct link fixed in README.
 
 ## [0.0.91] - 2019-08-07
 
