@@ -31,7 +31,11 @@ If you discover a bug in Acorn Mail, please [open an issue](https://github.com/p
 
 ## Contributing
 
-Contributing whether it be through PRs, reporting an issue, or suggesting an idea is encouraged and appreciated.
+[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/0)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/0)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/1)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/1)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/2)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/2)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/3)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/3)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/4)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/4)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/5)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/5)[![](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/images/6)](https://sourcerer.io/fame/kellymears/pixelcollective/acorn-mail/links/6)
+
+Contributing, whether it be through PRs, reporting an issue, or suggesting an idea is encouraged and appreciated.
+
+All contributors absolutely must strictly adhere to our [Code of Conduct](https://github.com/pixelcollective/acorn-mail/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
